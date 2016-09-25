@@ -72,7 +72,5 @@ int isPrime(int n){
             }
         }
     }
-    
-    
     return 0;
 }
