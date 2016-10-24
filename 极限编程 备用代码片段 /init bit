@@ -1,0 +1,86 @@
+#include <iostream>
+#include <cstdio>
+#include <stdlib.h>
+#include <fstream>
+#include <algorithm>
+#include <cmath>
+#include <deque>
+#include <vector>
+#include <queue>
+#include <string>
+#include <cstring>
+#include <map>
+#include <stack>
+#include <set>
+#include <map>
+#include <string.h>
+using namespace std;
+size_t f(size_t m,size_t n)
+{
+    size_t  d1,d2,d3=1;
+    if(m<=n)
+    {
+        d1=m;
+        d2=n;
+    }
+    else
+    {
+        d1=n;
+        d2=m;
+    }
+    while(d3!=0)
+    {
+        d3=d2%d1;
+        d2=d1;
+        d1=d3;
+    }
+    if(d2==1)
+    {
+        return n;
+    }
+     return 0;
+}
+
+int main(){
+    int T,t;
+    size_t j=0;
+    scanf("%d",&T);
+    for(t=0;t<T;t++){
+        size_t A,B,N;
+        scanf("%ld",&N);
+        scanf("%ld",&A);
+        scanf("%ld",&B);
+        size_t MAX = B+1;
+        size_t array[MAX];
+        array[1]=1;
+        for(j=2;j<MAX;j++){
+            if(N%j==0){
+                array[j] = 0;
+            }
+            else if(j%N==0){
+                array[j] =0;
+            }
+            else {
+                
+                array[j] = j;
+                size_t p=j,k=j;
+                while(p*k<MAX){
+                    array[p*k] = p*k;
+                    p *= p ;
+                }
+            }
+            
+        }
+        
+        
+        size_t sum = 0;
+        for(j=A;j<=B;j++){
+            if(array[j]==0){
+                continue;
+            }
+            sum = sum +((f(N,j))%1000000007);
+            sum %=1000000007;
+        }
+        printf("%ld\n",sum);
+    }
+}
