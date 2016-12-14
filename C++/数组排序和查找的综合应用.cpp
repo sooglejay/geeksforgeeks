@@ -55,7 +55,9 @@ No
 #include <stdio.h>
 #include<string.h>
 #include<stdlib.h>
+
 using namespace std;
+
 int cmp(const int *a, const int *b) {
     if (*a > *b) {
         return 1;
@@ -65,16 +67,16 @@ int cmp(const int *a, const int *b) {
         return -1;
 }
 
-int binarySearch(int A[],int n,int k){
-    int low=0,high = n;
-    while(high-low>=1){
-        int mid = (low+high)/2;
-        if(A[mid]>k){
+int binarySearch(int A[], int n, int k) {
+    int low = 0, high = n;
+    while (high - low >= 1) {
+        int mid = (low + high) / 2;
+        if (A[mid] > k) {
             high = mid;
-        }else if(A[mid]==k){
+        } else if (A[mid] == k) {
             return 1;
-        }else {
-            low = mid+1;
+        } else {
+            low = mid + 1;//二分法 我经常 写错为 low=mid+1
         }
     }
     return 0;
@@ -112,9 +114,10 @@ int main() {
             }
             if (p % A[i] == 0) {
                 int ll = p / A[i];
-                int *k = upper_bound(A, A + N, ll);
-                int *m = lower_bound(A, A + N, ll);
-                if (k-m>0) {
+                //这里是一个点需要理解，最终 k-m 的值是 数组中 ll 这个值 的元素个数
+                int *k = upper_bound(A, A + N, ll);//比ll大的元素个数
+                int *m = lower_bound(A, A + N, ll);//比ll小的元素个数
+                if (k - m > 0) {//说明存在值为ll的元素
                     flag = 1;
                     break;
                 }
