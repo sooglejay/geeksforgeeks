@@ -42,6 +42,8 @@ For n = 1 to 50, the maximum value of the ratio is 3.75 which is obtained at n =
 
 using namespace std;
 
+
+
 int main() {
     int t;
     scanf("%d", &t);
