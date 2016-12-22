@@ -78,7 +78,7 @@ int main() {
             local[j] = -1;
         }
         for (int i = 0; i < A.size(); ++i) {
-            if (local[A[i] - 'a'] == -1)
+            if (local[A[i] - 'a'] == -1)//这个点也是重点，经常应用！
                 local[A[i] - 'a'] = i;
         }
         int flag = 0;
