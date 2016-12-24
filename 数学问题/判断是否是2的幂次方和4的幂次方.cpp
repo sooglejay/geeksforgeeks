@@ -1,7 +1,7 @@
 //
 // Created by sooglejay on 16/12/24.
 //
-
+//http://www.cnblogs.com/grandyang/p/5403783.html
 #include <iostream>
 
 using namespace std;
