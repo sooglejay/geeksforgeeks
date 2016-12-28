@@ -80,6 +80,25 @@ int getM(int *num, int i) {
     return res;
 }
 
+/**
+ * A-1  B-2 C-3 ... 字符串转换为十进制的数值
+ * @param s
+ * @return
+ */
+long long getNumFromAlpha(string s) {
+    int len = int(s.size());
+    int base = 1;
+    long long sum = 0;
+    for (int i = len - 1; i >= 0; --i) {
+        sum = sum + base * (s[i] - 'A' + 1);
+        base *= 26;
+    }
+    cout << sum << endl;
+    return sum;
+}
+
+
+
 int main() {
     int t;
     cin >> t;
