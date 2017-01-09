@@ -3,7 +3,7 @@
 //
 
 //http://www.practice.geeksforgeeks.org/problem-page.php?pid=1542
-//思想就是： 走一步看一步，总有一步是最优的
+//思想就是： 走一步看一步，总有一步是最优的。注意必须要 把 1 的情况排除，不然会死循环的
 #include<iostream>
 #include <vector>
 #include <stack>
