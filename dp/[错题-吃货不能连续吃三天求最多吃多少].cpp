@@ -68,3 +68,54 @@ int main() {
         cout << func(dp, A, n, 0) << endl;
     }
 }
+
+
+
+
+// 下面是我自己某一天自己做出来的。当然算法还是跟上面一样。只是想再多说几句
+//不能连续三天吃，就存在三种情况：
+// 1 第 i 天不吃
+// 2 第i+1天不吃
+// 3 第i+2天不吃,
+//动态规划算法的精髓就是 后面所有的 情况都脱不掉上面那三种情况，如果脱离，那么公式就没有写全，跟 "公式写对了" 这个假设存在矛盾conflict！
+//公式写对了，比如上面三种情况，就能做出来了！
+
+//剩下的工作交给动态规划
+
+//看目的，目的是求最多吃多少，那就取上面三种情况的最大值
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+long solve(long *dp, int *A, int n, int i) {
+    if (i >= n) {
+        return 0;
+    }
+    if (dp[i] > 0) {
+        return dp[i];
+    }
+    long a = ((i + 1 < n) ? A[i + 1] : 0) + ((i + 2) < n ? A[i + 2] : 0) + solve(dp, A, n, i + 4);
+    long b = A[i] + solve(dp, A, n, i + 2);
+    long c = A[i] + ((i + 1 < n) ? A[i + 1] : 0) + solve(dp, A, n, i + 3);
+    dp[i] = max(max(a, b), c);
+    return dp[i];
+}
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int A[n];
+        long *dp = (long *) malloc(n * sizeof(long));
+        memset(dp, 0, sizeof(dp));
+        for (int i = 0; i < n; ++i) {
+            cin >> A[i];
+        }
+        cout << solve(dp, A, n, 0) << endl;
+
+
+    }
+}
