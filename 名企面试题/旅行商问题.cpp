@@ -103,3 +103,39 @@ int main() {
     }
 }
 
+
+//看到一个很牛逼的代码实现
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    int t; cin >> t; while(t--){
+        int n; cin >> n;
+        vector< vector<int> > M(n, vector<int>(n));
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < n; j++){
+                cin >> M[i][j];
+            }
+        }
+        //let DP[mask][i] be visited cities ending with i
+        vector< vector<int> > DP(1<<n,vector<int>(n,1e9));
+        for (int i = 0; i < n; i++){
+            DP[1<<i][i] = M[0][i];
+        }
+        for (int mask = 1; mask < (1<<n); mask++){
+            for (int j = 0; j < n; j++){
+                if (mask&(1<<j)){
+                    for (int k = 0; k < n; k++){
+                        if (!(mask&(1<<k))){
+                            DP[mask|(1<<k)][k] = min(DP[mask|(1<<k)][k],DP[mask][j]+M[j][k]);
+                        }
+                    }
+                }
+            }
+        }
+        cout << DP[(1<<n) - 1][0] << endl;
+    }
+    return 0;
+}
+
